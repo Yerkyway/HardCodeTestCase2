@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderServiceApp", "OrderServiceApp\OrderServiceApp.csproj", "{29C72F6B-60B3-478A-8807-E871AE13D3C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGateways", "ApiGateways\ApiGateways.csproj", "{EFB8B65C-A73E-43CE-A924-74355EB5B3C0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{29C72F6B-60B3-478A-8807-E871AE13D3C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29C72F6B-60B3-478A-8807-E871AE13D3C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29C72F6B-60B3-478A-8807-E871AE13D3C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29C72F6B-60B3-478A-8807-E871AE13D3C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFB8B65C-A73E-43CE-A924-74355EB5B3C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFB8B65C-A73E-43CE-A924-74355EB5B3C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFB8B65C-A73E-43CE-A924-74355EB5B3C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFB8B65C-A73E-43CE-A924-74355EB5B3C0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

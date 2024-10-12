@@ -1,0 +1,42 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/book",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5228
+        }
+      ],
+      "UpstreamPathTemplate": "/api/book",
+      "UpstreamHttpMethod": ["GET"],
+      "SwaggerKey": "OrderService"
+    },
+    {
+      "DownstreamPathTemplate": "/api/book/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5228
+        }
+      ],
+      "UpstreamPathTemplate": "/api/book/{everything}",
+      "UpstreamHttpMethod": ["GET", "POST", "PUT", "DELETE"],
+      "SwaggerKey": "OrderService"
+    }
+  ],
+  "SwaggerEndPoints": [
+    {
+      "Key": "OrderService",
+      "Config": [
+        {
+          "Name": "Order API",
+          "Version": "v1",
+          "Url": "http://localhost:5228/swagger/api/swagger.json"
+        }
+      ]
+    }
+  ]
+}
