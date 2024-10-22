@@ -1,0 +1,10 @@
+﻿services:
+  rabbitmq3:
+    container_name: "orderrabbiqmq"
+    image: rabbitmq:3.8-management-alpine
+    environment:
+      - RABBITMQ_DEFAULT_USER=yerkebulan
+      - RABBITMQ_DEFAULT_PASS=erke2004
+    ports:
+      - '5672:5672'
+      - '15672:15672'
