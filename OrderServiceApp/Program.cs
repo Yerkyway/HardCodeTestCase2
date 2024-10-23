@@ -1,3 +1,4 @@
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using OrderServiceApp;
@@ -18,6 +19,17 @@ builder.Services.AddAutoMapper(typeof(BookProfile).Assembly);
 builder.Services.AddDbContext<ApplicationDBContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
+builder.Services.AddMassTransit(x =>
+{
+    x.RegisterConsumersFrom(typeof(Program).Assembly);
+
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        cfg.ConfigureEndpoints(context);
+        cfg.SetHost(builder.Configuration);
+    });
 });
 
 var app = builder.Build();

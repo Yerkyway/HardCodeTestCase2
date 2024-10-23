@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OrderServiceApp.Data;
 using OrderServiceApp.Dtos;
+using OrderServiceApp.Events;
 using OrderServiceApp.Models;
 
 namespace OrderServiceApp.Controllers;
@@ -14,11 +16,13 @@ public class BookController : ControllerBase
 {
     private readonly ApplicationDBContext _context;
     private readonly IMapper _mapper;
+    private readonly IPublishEndpoint _publishEndpoint;
 
-    public BookController(ApplicationDBContext context, IMapper mapper)
+    public BookController(ApplicationDBContext context, IMapper mapper, IPublishEndpoint publishEndpoint)
     {
         _context = context;
         _mapper = mapper;
+        _publishEndpoint = publishEndpoint;
     }
 
     [HttpGet]
@@ -27,6 +31,8 @@ public class BookController : ControllerBase
         var books = await _context.Books
             .ProjectTo<BookDto>(_mapper.ConfigurationProvider)
             .ToListAsync();
+        
+        await _publishEndpoint.Publish(new OrderServiceEvent(){Message = "Books retrieved"});
         return Ok(books);
     }
 
@@ -38,6 +44,8 @@ public class BookController : ControllerBase
         {
             return NotFound();
         }
+        
+        await _publishEndpoint.Publish(new OrderServiceEvent(){Message = "Book retrieved by id"});
 
         return Ok(_mapper.Map<BookDto>(book));
     }
@@ -49,6 +57,7 @@ public class BookController : ControllerBase
         var bookModel = _mapper.Map<Book>(bookDto);
         await _context.Books.AddAsync(bookModel);
         await _context.SaveChangesAsync();
+        await _publishEndpoint.Publish(new OrderServiceEvent(){Message = "Book created"});
         
         return CreatedAtAction(nameof(GetBookById), new { id = bookModel.Id }, _mapper.Map<BookDto>(bookModel));
     }
@@ -64,6 +73,8 @@ public class BookController : ControllerBase
         
         _mapper.Map(updateBookDto, book);
         await _context.SaveChangesAsync();
+        
+        await _publishEndpoint.Publish(new OrderServiceEvent(){Message = "Book updated"});
         return Ok(_mapper.Map<BookDto>(book));
     }
 
@@ -77,6 +88,8 @@ public class BookController : ControllerBase
         }
         _context.Books.Remove(book);
         await _context.SaveChangesAsync();
+        
+        await _publishEndpoint.Publish(new OrderServiceEvent(){Message = "Book deleted"});
         
         return NoContent();
     }
