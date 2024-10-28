@@ -25,6 +25,32 @@
       "UpstreamPathTemplate": "/api/book/{everything}",
       "UpstreamHttpMethod": ["GET", "POST", "PUT", "DELETE"],
       "SwaggerKey": "OrderService"
+    },
+    {
+      "DownstreamPathTemplate": "/api/delivery",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5267
+        }
+      ],
+      "UpstreamPathTemplate": "/api/delivery",
+      "UpstreamHttpMethod": ["GET"],
+      "SwaggerKey": "DeliveryService"
+    },
+    {
+      "DownstreamPathTemplate": "/api/delivery/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5267
+        }
+      ],
+      "UpstreamPathTemplate": "/api/delivery/{everything}",
+      "UpstreamHttpMethod": ["GET", "POST", "PUT", "DELETE"],
+      "SwaggerKey": "DeliveryService"
     }
   ],
   "SwaggerEndPoints": [
@@ -35,6 +61,16 @@
           "Name": "Order API",
           "Version": "v1",
           "Url": "http://localhost:5228/swagger/api/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "DeliveryService",
+      "Config": [
+        {
+          "Name": "Delivery API",
+          "Version": "v1",
+          "Url": "http://localhost:5267/swagger/api/swagger.json"
         }
       ]
     }

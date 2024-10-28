@@ -29,7 +29,7 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
-    c.SwaggerEndpoint("/swagger/api/swagger.json", "OrderServiceApi");
+    c.SwaggerEndpoint("/swagger/api/swagger.json", "DeliveryServiceApi");
 });
 
 app.UseHttpsRedirection();
