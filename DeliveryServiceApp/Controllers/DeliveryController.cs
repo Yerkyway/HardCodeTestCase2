@@ -3,10 +3,12 @@ using AutoMapper.QueryableExtensions;
 using DeliveryServiceApp.Data;
 using DeliveryServiceApp.Dto;
 using DeliveryServiceApp.Models;
+using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OrderServiceApp.Data;
 using OrderServiceApp.Dtos;
+using OrderServiceApp.Events;
 
 namespace DeliveryServiceApp.Controllers;
 

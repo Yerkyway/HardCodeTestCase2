@@ -1,7 +1,10 @@
 using DeliveryServiceApp.Data;
+using DeliveryServiceApp.EventHandler;
 using DeliveryServiceApp.Profiles;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using OrderServiceApp;
 using OrderServiceApp.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +23,25 @@ builder.Services.AddAutoMapper(typeof(DeliveryProfile).Assembly);
 builder.Services.AddDbContext<DSApplicationDbContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DeliveryServiceConnection"));
+});
+
+builder.Services.AddDbContext<ApplicationDBContext>(options =>
+{
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
+
+builder.Services.AddMassTransit(x =>
+{
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        var rabbitMQConfig = builder.Configuration.GetSection("RabbitMQ");
+        cfg.Host(rabbitMQConfig["HostName"], Convert.ToUInt16(rabbitMQConfig["Port"]), rabbitMQConfig["VirtualHost"], h =>
+        {
+            h.Username(rabbitMQConfig["UserName"]);
+            h.Password(rabbitMQConfig["Password"]);
+        });
+    });
 });
 
 

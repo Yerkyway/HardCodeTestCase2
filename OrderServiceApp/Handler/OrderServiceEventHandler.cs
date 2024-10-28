@@ -1,7 +1,7 @@
 ﻿using MassTransit;
 using OrderServiceApp.Events;
 
-namespace OrderServiceApp.Handlers;
+namespace OrderServiceApp.Handler;
 
 public class OrderServiceEventHandler : IConsumer<OrderServiceEvent>
 {

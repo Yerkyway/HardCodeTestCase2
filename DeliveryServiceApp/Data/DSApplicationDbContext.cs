@@ -5,7 +5,7 @@ namespace DeliveryServiceApp.Data;
 
 public class DSApplicationDbContext : DbContext
 {
-    public DSApplicationDbContext(DbContextOptions options) : base(options)
+    public DSApplicationDbContext(DbContextOptions<DSApplicationDbContext> options) : base(options)
     {
         
     }
