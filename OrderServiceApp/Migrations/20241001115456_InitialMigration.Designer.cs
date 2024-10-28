@@ -24,7 +24,7 @@ namespace OrderServiceApp.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("OrderServiceApp.Models.Book", b =>
+            modelBuilder.Entity("OrderServiceAppdels.Book", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
