@@ -12,4 +12,5 @@ public class ApplicationDBContext : DbContext
     }
     
     public DbSet<Book> Books { get; set; }
+    public DbSet<Orders> Orders { get; set; }
 }

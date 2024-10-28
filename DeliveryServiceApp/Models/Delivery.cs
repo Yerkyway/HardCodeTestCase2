@@ -3,15 +3,15 @@ using OrderServiceApp.Models;
 
 namespace DeliveryServiceApp.Models;
 
-public class BookToDelivery
+public class Delivery
 {
     public int Id { get; set; }
     public string City { get; set; } = string.Empty;
     public string Neighborhood { get; set; } = string.Empty;
     public string Street { get; set; } = string.Empty;
-    public Book Book { get; set; } = new Book();
+
+    public int OrderId { get; set; }
     
-    [Column(TypeName = "decimal(18,2)")]
-    public decimal Price => Book.Price;
+
 
 }

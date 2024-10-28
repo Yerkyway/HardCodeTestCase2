@@ -10,5 +10,5 @@ public class DSApplicationDbContext : DbContext
         
     }
     
-    public DbSet<BookToDelivery> BooksToDelivery { get; set; }
+    public DbSet<Delivery> Deliveries { get; set; }
 }
