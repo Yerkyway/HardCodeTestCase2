@@ -1,4 +1,4 @@
-﻿using MassTransit;
+﻿/*using MassTransit;
 using OrderServiceApp.Events;
 
 namespace OrderServiceApp.Handler;
@@ -10,4 +10,4 @@ public class OrderServiceEventHandler : IConsumer<OrderServiceEvent>
         Console.WriteLine(context.Message.Message);
         return Task.CompletedTask;
     }
-}
+}*/

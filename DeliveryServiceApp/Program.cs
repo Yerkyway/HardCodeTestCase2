@@ -33,6 +33,8 @@ builder.Services.AddDbContext<ApplicationDBContext>(options =>
 
 builder.Services.AddMassTransit(x =>
 {
+    x.AddConsumer<DeliveryEventHandler>();
+    
     x.UsingRabbitMq((context, cfg) =>
     {
         var rabbitMQConfig = builder.Configuration.GetSection("RabbitMQ");
@@ -40,6 +42,11 @@ builder.Services.AddMassTransit(x =>
         {
             h.Username(rabbitMQConfig["UserName"]);
             h.Password(rabbitMQConfig["Password"]);
+        });
+        
+        cfg.ReceiveEndpoint("OrderServiceEventHandler", e =>
+        {
+            e.ConfigureConsumer<DeliveryEventHandler>(context);
         });
     });
 });

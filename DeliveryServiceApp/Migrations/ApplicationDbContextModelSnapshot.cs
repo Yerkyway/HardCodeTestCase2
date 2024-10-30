@@ -33,10 +33,6 @@ namespace DeliveryServiceApp.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Neighborhood")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<int>("OrderId")
                         .HasColumnType("integer");
 

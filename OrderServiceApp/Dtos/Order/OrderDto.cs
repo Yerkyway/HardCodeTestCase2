@@ -1,18 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.InteropServices.JavaScript;
+﻿using OrderServiceApp.Models;
 
-namespace OrderServiceApp.Models;
+namespace OrderServiceApp.Dtos;
 
-public class Orders
+public class OrderDto
 {
     public int Id { get; set; }
-    
-    [ForeignKey(nameof(Book))]
     public int BookId { get; set; }
-    public Book Book { get; set; }
-    
     public string City { get; set; } = string.Empty;
     public string Street { get; set; } = string.Empty;
-
     public DateTime OrderDate { get; set; } = DateTime.Now;
 }
