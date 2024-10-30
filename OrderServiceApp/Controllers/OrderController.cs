@@ -60,7 +60,7 @@ public class OrderController : Controller
         await _context.Orders.AddAsync(order);
         await _context.SaveChangesAsync();
 
-        await _publishEndpoint.Publish(new OrderServiceEvent()
+        await _publishEndpoint.Publish(new OrderCreateEvent()
             { OrderId = order.Id, City = order.City, Street = order.Street });
         
         return CreatedAtAction(nameof(GetOrderById), new { id = order.Id }, _mapper.Map<OrderDto>(order));

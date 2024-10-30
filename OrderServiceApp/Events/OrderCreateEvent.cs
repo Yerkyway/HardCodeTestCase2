@@ -2,7 +2,7 @@
 
 namespace OrderServiceApp.Events;
 
-public class OrderServiceEvent
+public class OrderCreateEvent
 {
     public int OrderId { get; set; }
     public string City { get; set; } = string.Empty;

@@ -25,10 +25,6 @@ builder.Services.AddDbContext<DSApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DeliveryServiceConnection"));
 });
 
-builder.Services.AddDbContext<ApplicationDBContext>(options =>
-{
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
 
 
 builder.Services.AddMassTransit(x =>

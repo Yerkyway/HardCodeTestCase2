@@ -7,7 +7,7 @@ using Delivery = DeliveryServiceApp.Models.Delivery;
 
 namespace DeliveryServiceApp.EventHandler;
 
-public class DeliveryEventHandler : IConsumer<OrderServiceEvent>
+public class DeliveryEventHandler : IConsumer<OrderCreateEvent>
 {
     
     private readonly DSApplicationDbContext _context;
@@ -17,7 +17,7 @@ public class DeliveryEventHandler : IConsumer<OrderServiceEvent>
         _context = context;
     }
 
-    public async Task Consume(ConsumeContext<OrderServiceEvent> context)
+    public async Task Consume(ConsumeContext<OrderCreateEvent> context)
     {
 
         var delivery = new Delivery()
