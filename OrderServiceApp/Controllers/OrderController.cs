@@ -18,13 +18,15 @@ public class OrderController : Controller
     private readonly ApplicationDBContext _context;
     private readonly IMapper _mapper;
     private readonly IPublishEndpoint _publishEndpoint;
+    private readonly ILogger<OrderController> _logger;
 
 
-    public OrderController(ApplicationDBContext context, IMapper mapper, IPublishEndpoint publishEndpoint)
+    public OrderController(ApplicationDBContext context, IMapper mapper, IPublishEndpoint publishEndpoint, ILogger<OrderController> logger)
     {
         _context = context;
         _mapper = mapper;
         _publishEndpoint = publishEndpoint;
+        _logger = logger;
     }
 
     [HttpGet]
@@ -56,12 +58,20 @@ public class OrderController : Controller
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreateOrderRequestDto orderRequestDto)
     {
+        _logger.LogInformation("Creating order");
+        
         var order = _mapper.Map<Orders>(orderRequestDto);
         await _context.Orders.AddAsync(order);
         await _context.SaveChangesAsync();
-
+        
+        _logger.LogInformation("Created order");
+        
+        _logger.LogInformation("Publishing OrderCreateEvent for Order ID: {OrderId} to RabbitMQ", order.Id);
+        
         await _publishEndpoint.Publish(new OrderCreateEvent()
             { OrderId = order.Id, City = order.City, Street = order.Street });
+        
+        _logger.LogInformation("OrderCreateEvent for Order ID {OrderId} was successfully published to RabbitMQ", order.Id);
         
         return CreatedAtAction(nameof(GetOrderById), new { id = order.Id }, _mapper.Map<OrderDto>(order));
     }

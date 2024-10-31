@@ -29,7 +29,10 @@ builder.Services.AddDbContext<DSApplicationDbContext>(options =>
 
 builder.Services.AddMassTransit(x =>
 {
-    x.AddConsumer<DeliveryEventHandler>();
+    x.AddConsumer<DeliveryEventHandler>(cfg =>
+    {
+        cfg.UseRetry(r => r.Interval(5, TimeSpan.FromSeconds(10)));
+    });
     
     x.UsingRabbitMq((context, cfg) =>
     {
@@ -46,6 +49,8 @@ builder.Services.AddMassTransit(x =>
         });
     });
 });
+
+builder.Services.AddLogging();
 
 
 var app = builder.Build();
