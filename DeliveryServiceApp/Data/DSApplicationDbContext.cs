@@ -11,4 +11,5 @@ public class DSApplicationDbContext : DbContext
     }
     
     public DbSet<Delivery> Deliveries { get; set; }
+    
 }

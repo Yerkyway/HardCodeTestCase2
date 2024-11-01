@@ -10,4 +10,6 @@ public class Delivery
     public string Street { get; set; } = string.Empty;
 
     public int OrderId { get; set; }
+
+    public DeliveryStatus DeliveryStatus { get; set; } = DeliveryStatus.PENDING;
 }
