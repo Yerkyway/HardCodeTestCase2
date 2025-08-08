@@ -1,22 +1,9 @@
-HARDCODETESTCASE2
 Empowering Seamless Communication for Scalable Innovation
 
 last-commit repo-top-language repo-language-count
 Built with the tools and technologies:
 
 JSON Markdown Docker NuGet
-
-Table of Contents
-Overview
-Getting Started
-Prerequisites
-Installation
-Usage
-Testing
-Overview
-HardCodeTestCase2 is a robust developer tool designed to facilitate the development of scalable, decoupled microservices architectures. It integrates core components such as message brokering with RabbitMQ, API routing via Ocelot, and comprehensive API documentation with Swagger, enabling seamless communication and testing across services. The project emphasizes clean data flow through DTOs and object mappings, while supporting containerized deployment with Docker for consistent environments.
-
-Why HardCodeTestCase2?
 
 This project aims to simplify building reliable, event-driven systems. The core features include:
 
@@ -55,17 +42,7 @@ Run the project with:
 
 Using docker:
 
-docker run -it {image_name}
+docker run -it 
 Using nuget:
 
 dotnet run
-Testing
-Hardcodetestcase2 uses the {test_framework} test framework. Run the test suite with:
-
-Using docker:
-
-echo 'INSERT-TEST-COMMAND-HERE'
-Using nuget:
-
-dotnet test
-⬆ Return
